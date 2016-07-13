@@ -37,6 +37,9 @@ There’s also `lisp/` which has many of [lunaryorn’s](https://github.com/lun
 - A very powerful and comprehensive LaTeX setup with [AUCTeX][]
 - Nice configurations for Scala (with [Ensime][]), Emacs Lisp and a couple of
   other languages
+- Built-in web server you can launch with `httpd-start` and stop it with `httpd-stop`. It will serve files from the directory at `httpd-root` and log messages in s-expression form to the `*httpd*` buffer.
+- [Skewer][] provides a JavaScript REPL (`skewer-repl`) and live expression evaluation in JavaScript buffers of an external web browser attached to the built-in web server running in Emacs. It can also do live "evaluation" of CSS (`skewer-css-mode`) and HTML (`skewer-html-mode`).
+
 
 [Spacemacs]: http://spacemacs.org
 [Which Key Mode]: https://github.com/justbur/emacs-which-key
