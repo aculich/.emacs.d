@@ -1,21 +1,17 @@
 # My personal Emacs configuration #
 
-Based heavily on (e.g. forked directly from) Sebastian Wiesner's awesome
-Emacs setup: https://github.com/lunaryorn/.emacs.d
+Based heavily on (e.g. forked directly from) Sebastian Wiesner's awesome Emacs setup: https://github.com/lunaryorn/.emacs.d
 
-With many awesome additions (such as the most-excellent [skewer-mode](https://github.com/skeeto/.emacs.d#skewer)) taken from Christopher Wellons's configs:
-https://github.com/skeeto/.emacs.d
+With many awesome additions (such as the most-excellent [skewer-mode](https://github.com/skeeto/.emacs.d#skewer)) taken from Christopher Wellons's configs: https://github.com/skeeto/.emacs.d
 
 
-Makes extensive use of
-[use-package](https://github.com/jwiegley/use-package).
+Makes extensive use of [use-package](https://github.com/jwiegley/use-package).
 
 Also, I prefer using [Cask](https://github.com/cask/cask) to install packages rather than rely on use-package to download and byte-compile the packages. When dealing with a large number of packages it can be frustrating to have one byte-compilation snafu that aborts the initial (often lengthy) first-time setup process–– forcing you to restart the process all over again.
 
 ## Setup — How do you use it? ##
 
-You need Emacs 25 snapshot builds, straight from Git `master`.  Stable
-releases of GNU Emacs won’t work, I build GNU Emacs weekly.
+You need Emacs 25 snapshot builds, straight from Git `master`.  Stable releases of GNU Emacs won’t work, I build GNU Emacs weekly.
 
 ```console
 $ git clone https://github.com/lunaryorn/.emacs.d.git ~/.emacs.d
@@ -24,22 +20,17 @@ $ brew install aspell --with-lang-en
 $ cd ~/.emacs.d && cask install
 ```
 
-plus all the standard tools for all the various programming languages (`sbt`,
-`hlint`, `stack`, `pandoc`, `pylint` and stuff).  Read the comments in `init.el`
-for more information.
+plus all the standard tools for all the various programming languages (`sbt`, `hlint`, `stack`, `pandoc`, `pylint` and stuff).  Read the comments in `init.el` for more information.
 
 ## Layout — Where do you find things? ##
 
-It’s a single big `init.el`, containing only `use-package` declarations for all
-the built-in and 3rd party packages I use.  These declarations have all the
-configuration and setup for the specific packages.
+It’s a single big `init.el`, containing only `use-package` declarations for all the built-in and 3rd party packages I use.  These declarations have all the configuration and setup for the specific packages.
 
 There’s also `lisp/` which has many of [lunaryorn’s](https://github.com/lunaryorn/.emacs.d) personal extensions and libraries with custom functions, etc.  These libraries are loaded like normal packages with `use-package` in `init.el`. Much of the code is useful and I would like to generalize it in the future, but for now it contain’s the lunaryorn namespace prefix.
 
 ## Highlights — What you should probably copy from this! ##
 
-- Very good OS X support, even with stock GNU Emacs, including a font setup that
-  supports Math, Symbols and Coloured Emojis (yay 😍)
+- Very good OS X support, even with stock GNU Emacs, including a font setup that supports Math, Symbols and Coloured Emojis (yay 😍)
 - A well-designed key bindings scheme, inspired by [Spacemacs][], supported by
   [Which Key Mode][] and [Hydra][]
 - Rules for buffer displays in `display-buffer-alist`
