@@ -1,0 +1,50 @@
+# Elisp byte code
+*.elc
+
+# Customization settings.  We ignore these because they are automatically
+# generated, contain “local” information (e.g. safe themes, automatically
+# installed packages), and most importantly, hold _sensitive_ information,
+# e.g. DB connection settings, access tokens, etc.
+#
+# DO NOT UNIGNORE THIS FILE!
+/custom.el
+
+# Installed packages
+/elpa/
+/.cask/
+
+# Recovery and backup directories
+/auto-save-list/
+/.backup/
+
+# Cache files and settings for packages
+/tutorial/
+/.emacs.desktop*
+/.mc-lists.el
+/smex-items
+/bookmarks
+/history
+/ido.last*
+/places
+/projectile-bookmarks.eld
+/projectile.cache
+/recentf
+/semanticdb/
+/session.*
+/tramp
+/tramp-auto-save
+/url/
+/var/
+/abbrev_defs
+/cider-repl-history
+/eww-bookmarks
+/.sx
+/ensime/
+/company-statistics-cache.el
+/eshell/
+/network-security.data
+/anaconda-mode/
+/.cache/
+/.DS_Store
+/local/
+flycheck_init.el
