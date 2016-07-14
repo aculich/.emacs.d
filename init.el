@@ -3032,7 +3032,17 @@ for more information about CALLBACK."
 (use-package zone                       ; Emacs screen saver
   :commands (zone-when-idle)
   :bind ("C-c z" . zone)
-  :init (zone-when-idle 30))
+  :init
+  (setq zone-timeout 30)
+  (defun zone-when-idle-and-focused ()
+    "Use with `focus-in-hook' to only zone when our focus is back in Emacs."
+    (zone-when-idle (or zone-timeout 30)))
+  (defun zone-nodoze ()
+    "Use with `focus-out-hook' so we don't zone when our focus is elsewhere."
+    (let ((inhibit-message t)) (zone-leave-me-alone)))
+  (add-hook 'focus-in-hook #'zone-when-idle-and-focused)
+  (add-hook 'focus-out-hook #'zone-nodoze)
+  (zone-when-idle zone-timeout))
 
 (use-package zone-nyan                  ; Not exactly useful but <3
   :ensure t
