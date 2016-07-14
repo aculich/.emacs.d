@@ -3030,6 +3030,7 @@ for more information about CALLBACK."
 
 ;;; Fun
 (use-package zone                       ; Emacs screen saver
+  :ensure shut-up
   :commands (zone-when-idle)
   :bind ("C-c z" . zone)
   :init

@@ -321,6 +321,7 @@
 (depends-on "popwin")
 (depends-on "powershell")
 (depends-on "recompile-on-save")
+(depends-on "shut-up")
 (depends-on "smex")
 (depends-on "ssh")
 (depends-on "swoop")
