@@ -1235,8 +1235,7 @@ Return the new window for BUFFER."
           ("C-c s S"   . helm-multi-swoop)
           ("C-c s C-s" . helm-multi-swoop-all)
           ("A-O"       . helm-swoop-back-to-last-point)
-          ("A-o"       . helm-swoop)
-          ("°"         . helm-swoop))
+          ([remap swoop] . helm-swoop))
   :init
   (bind-keys
    :map isearch-mode-map
