@@ -45,6 +45,7 @@
 
 (prefer-coding-system 'utf-8-unix)
 (set-language-environment "UTF-8")
+(setq iso-transl-char-map nil)          ; http://emacs.stackexchange.com/a/17524/2138
 
 (defvar user-setup-directory          (expand-file-name "setup"          user-emacs-directory))
 (defvar user-setup-builtins-directory (expand-file-name "setup/builtins" user-emacs-directory))
