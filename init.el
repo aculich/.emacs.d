@@ -1754,6 +1754,7 @@ Disable the highlighting of overlong lines."
   :diminish company-mode)
 
 (use-package company-quickhelp          ; Show help in tooltip
+  :disabled t                           ; M-h clashes with mark-paragraph
   :ensure t
   :after company
   :config (company-quickhelp-mode))
