@@ -1225,6 +1225,10 @@ Return the new window for BUFFER."
   :defer t
   :bind (([remap occur] . helm-occur)))
 
+
+(use-package swoop
+  :bind ("A-o" . swoop))
+
 (use-package helm-swoop                 ; Powerful buffer search for Emacs
   :ensure t
   :bind  (("C-c s s"   . helm-swoop)
@@ -3772,9 +3776,6 @@ for more information about CALLBACK."
 
 (use-package ssh
   :defer t)
-
-(use-package swoop
-  :bind ("A-o" . swoop))
 
 (use-package vagrant
   :config
