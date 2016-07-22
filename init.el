@@ -2811,6 +2811,57 @@ the REPL in a new frame instead."
   :defer t
   :bind ("C-c g I" . helm-gitignore))
 
+(use-package git-gutter
+  :diminish git-gutter-mode
+  :commands (stage-or-commit)
+  :bind (("C-x C-g" . git-gutter:toggle)
+         ("C-x v =" . git-gutter:popup-hunk)
+         ;; ("C-x p"   . git-gutter:previous-hunk)
+         ;; ("C-x n"   . git-gutter:next-hunk)
+         ("A-p"     . git-gutter:previous-hunk)
+         ("A-n"     . git-gutter:next-hunk)
+         ("C-A-p"   . git-gutter:previous-hunk)
+         ("C-A-n"   . git-gutter:next-hunk-diff)
+         ("C-A-c"   . stage-or-commit)
+         ("C-x v s" . git-gutter:stage-hunk)
+         ("C-x v r" . git-gutter:revert-hunk)
+         ("C-A-r"   . git-gutter:revert-hunk))
+  :init (global-git-gutter-mode +1)
+  :config
+  (progn
+    (defun git-gutter:diff-hunk ()
+      "Popup diff of current hunk."
+      (interactive)
+      (git-gutter:awhen (git-gutter:search-here-diffinfo git-gutter:diffinfos)
+        (git-gutter:popup-hunk it)
+        (git-gutter:popup-buffer-window)))
+
+
+    (defun git-gutter:next-hunk-diff (&optional arg)
+      (interactive "p")
+      (git-gutter:next-hunk arg)
+      (recenter nil)
+      (git-gutter:diff-hunk))
+
+
+    (defun stage-or-commit (&optional arg)
+      (interactive "p")
+      (if (ignore-errors (git-gutter:search-here-diffinfo git-gutter:diffinfos))
+          (progn (git-gutter:stage-hunk)
+                 (message "foo"))
+        (progn
+          (save-excursion
+            (magit-diff-staged)
+            (magit-commit))))
+      (when (functionp 'magit-update-status-on-save)
+        (magit-update-status-on-save)))
+
+    ;; override y/n question-asking
+    (defadvice git-gutter:stage-hunk (around quick-stage activate)
+      (cl-flet ((yes-or-no-p (&rest args) t))
+        ad-do-it))
+    ))
+
 
 ;;; Github integration
 (use-package gh                         ; Github API library
