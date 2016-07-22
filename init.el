@@ -2724,9 +2724,9 @@ the REPL in a new frame instead."
          ("A-r"     . magit-reflog))
   :init
   (progn
-    (bind-keys
-     :map dired-mode-map
-     ("c" . magit-clone))
+    (use-package dired
+      :bind (:map dired-mode-map
+                  ("c" . magit-clone)))
     (setq magit-auto-revert-mode t)
     (autoload 'magit-toplevel "magit")
     (defun custom-grep-find (&optional arg)
