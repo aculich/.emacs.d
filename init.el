@@ -1479,7 +1479,11 @@ Return the new window for BUFFER."
   :ensure t
   :bind (("C-c v"           . er/expand-region)
          ("C-="             . er/expand-region)
-         ([remap mark-sexp] . er/expand-region))
+         ([remap mark-sexp] . er/expand-region)
+         ;; ("M-C-j"           . er/expand-region)
+         ("M-C-;"           . er/expand-region)
+         ("A-C-;"           . er/expand-region)
+         ("A-C-h"           . er/expand-region))
   :init
   (defun expand-region-on-scan-error (orig-fun &rest args)
     "On error of mark-sexp, switch to er/expand-region."
