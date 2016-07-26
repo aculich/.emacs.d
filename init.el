@@ -1086,7 +1086,7 @@ Return the new window for BUFFER."
         ;; Cleanup recent files only when Emacs is idle, but not when the mode
         ;; is enabled, because that unnecessarily slows down Emacs. My Emacs
         ;; idles often enough to have the recent files list clean up regularly
-        recentf-auto-cleanup 300
+        recentf-auto-cleanup 'never ;; disable before we start recentf! If using Tramp a lot.
         recentf-exclude (list "/\\.git/.*\\'" ; Git contents
                               "/elpa/.*\\'" ; Package files
                               "/itsalltext/" ; It's all text temp files
