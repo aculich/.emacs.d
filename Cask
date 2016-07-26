@@ -331,7 +331,7 @@
 (depends-on "vagrant")
 (depends-on "vagrant-tramp")
 (depends-on "wand")
-
+(depends-on "noflet")
 
 (depends-on "helm-org-rifle")                         ; 20160420.818  available  melpa      Rifle through your Org files
 
