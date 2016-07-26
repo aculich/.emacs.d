@@ -2851,8 +2851,7 @@ the REPL in a new frame instead."
     (defun stage-or-commit (&optional arg)
       (interactive "p")
       (if (ignore-errors (git-gutter:search-here-diffinfo git-gutter:diffinfos))
-          (progn (git-gutter:stage-hunk)
-                 (message "foo"))
+          (git-gutter:stage-hunk)
         (progn
           (save-excursion
             (magit-diff-staged)
@@ -2860,9 +2859,10 @@ the REPL in a new frame instead."
       (when (functionp 'magit-update-status-on-save)
         (magit-update-status-on-save)))
 
+    (require 'noflet)
     ;; override y/n question-asking
     (defadvice git-gutter:stage-hunk (around quick-stage activate)
-      (cl-flet ((yes-or-no-p (&rest args) t))
+      (noflet ((yes-or-no-p (&rest args) t))
         ad-do-it))
     ))
 
