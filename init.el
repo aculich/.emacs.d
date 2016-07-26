@@ -3857,6 +3857,201 @@ for more information about CALLBACK."
     ))
 
 
+
+(load "dot-org")
+
+;; (use-package org
+;;   :defer t
+;;   :bind
+;;   (("C-. o t"   . org-capture)
+;;    ("C-. o a"   . org-agenda)
+;;    ("C-. o SPC" . dc/my-agenda)
+;;    ("C-. o l"   . org-store-link)
+;;    ("C-. o w"   . my:org-move-to-refile-target)
+;;    ("C-. o s"   . org-save-all-org-buffers))
+;;   :init
+;;   (progn
+;;     (setq org-modules '(org-protocol org-capture ox-beamer))
+
+;;     (with-eval-after-load "org-latex"
+;;       (progn
+;;         (setq org-latex-listings t)
+;;         (add-to-list 'org-latex-packages-alist '("" "listings"))
+;;         (add-to-list 'org-latex-packages-alist '("" "color"))))
+
+;;     (defun my:org-move-to-refile-target (&optional last)
+;;       (interactive "p")
+;;       (require 'org)
+;;       (org-refile (if (= last 4) '(16) '(4))))
+
+;;     (defun dc/my-agenda ()
+;;       (interactive)
+;;       (require 'org-agenda)
+;;       (let ((entry (assoc " " org-agenda-custom-commands)))
+;;         (org-agenda-run-series (nth 1 entry) (cddr entry)))))
+;;   :config
+;;   (progn
+;;     ;; Custom agenda command definitions
+;;     (setq org-agenda-custom-commands
+;;           (quote (("l" "Logbook" nico/org-agenda-log ""
+;;                    ((org-agenda-overriding-header "Logbook")))
+;;                   (" " "Agenda"
+;;                    ((agenda "" nil)
+;;                     (tags "REFILE"
+;;                           ((org-agenda-overriding-header "Tasks to Refile")
+;;                            (org-tags-match-list-sublevels nil))))
+;;                    nil))))
+
+;;     (defun nico/org-agenda-log (arg)
+;;       (let ((org-agenda-files org-agenda-files))
+;;         (add-to-list 'org-agenda-files "~/Documents/configuration/org/tasks.org_archive")
+;;         (add-to-list 'org-agenda-files "~/Documents/configuration/org/someday.org_archive")
+;;         (org-agenda-list arg)
+;;         (org-agenda-log-mode)
+;;         (org-agenda-earlier 1)))
+
+;;     (setq org-default-calendar-file
+;;           "~/Documents/configuration/org/schplaf.org")
+
+;;     (setq org-agenda-files
+;;           `("~/Documents/configuration/org/refile.org"
+;;             "~/Documents/configuration/org/tasks.org"
+;;             "~/Documents/configuration/org/someday.org"
+;;             "~/Documents/configuration/org/repeating.org"
+;;             ,org-default-calendar-file))
+
+;;     (setq org-refile-targets `(("~/Documents/configuration/org/tasks.org"      :maxlevel . 2)
+;;                                ("~/Documents/configuration/org/someday.org"    :maxlevel . 2)
+;;                                ("~/Documents/configuration/org/repeating.org"  :maxlevel . 2)))
+
+;;     (setq org-todo-keywords
+;;           '((sequence "TODO(t)"    "|" "DONE(d)" "CANCELLED(c)")
+;;             (sequence "APPT(p)"    "|" "DONE(d)" "CANCELED(c)")
+;;             (sequence "WAITING(w)" "|" "DONE(d)")))
+
+;;     (setq org-capture-templates
+;;           '(("t" "Todo" entry
+;;              (file org-default-notes-file)
+;;              "* TODO %?%i")
+;;             ("s" "Schedule" entry
+;;              (file org-default-calendar-file)
+;;              "* %?\n%^T")))
+
+;;     (unbind-key "C-'" org-mode-map)
+
+;;     (add-to-list 'org-file-apps '("\\.png\\'" . default))
+
+;;     (defvar fuzz-factor 1.0e-3)
+;;     (defun approx-equal (x y)
+;;       (or (= x y)
+;;           (< (/ (abs (- x y))
+;;                 (max (abs x) (abs y)))
+;;              fuzz-factor)))
+
+;;     (defvar my:gisele-service 192)
+;;     (defun my:calc-gisele (other tp)
+;;       (let (new-other new-tp)
+;;         (if (< other 192)
+;;             (progn
+;;               (setq new-tp (max 0 (- tp (- my:gisele-service other))))
+;;               (setq new-other (min my:gisele-service (+ other tp))))
+;;           (setq new-tp (/ tp 2.0))
+;;           (setq new-other (+ other (/ tp 2.0))))
+;;         (+ new-other (* new-tp (/ 2.0 3)))))
+
+;;     ;; When service is complete without TP:
+;;     ;; 15h TP counts for 50% at 1 and for 50% at 2/3
+;;     ;; 196.5 + (15/2) + (15/2 * 2/3)
+;;     (cl-assert (approx-equal (my:calc-gisele 196.5 15) 209))
+
+;;     ;; When service requires TP to be complete:
+;;     ;; 15h TP first completes 180.5 to attain 192. The rest
+;;     ;; 15-(192-180.5) counts for 2/3
+;;     (cl-assert (approx-equal (my:calc-gisele 180.5 15) 194.33))
+
+;;     ;; When service + TP is still not complete: (untested with Gisele)
+;;     (cl-assert (approx-equal (my:calc-gisele 100 15) 115))
+
+;;     (use-package ox-twbs)))
+
+(use-package org
+  :mode ("\\.org$" . org-mode)
+  :bind (("C-c l" . org-store-link)
+         ("C-c c" . org-capture)
+         ("C-c a" . org-agenda)
+         ("C-<tab>" . other-window)
+         ("C-S-<tab>" . other-window-previous)
+         ;; ("C-'" . org-cycle-agenda-files)
+         ("C-c b" . org-iswitchb))
+  :config (progn (setq org-default-notes-file (concat org-directory "/notes.org"))
+                 (setq org-tags-column -90)
+                 (setq org-capture-bookmark t)
+                 (setq org-refile-use-outline-path 'file)
+                 (setq org-startup-folded 'showeverything)
+                 (setq org-log-done 'note)
+                 (define-key org-mode-map (kbd "C-M-\\") 'org-indent-region)))
+
+(use-package org-bullets
+  :commands org-bullets-mode
+  :init (add-hook-exec 'org-mode (lambda () (org-bullets-mode 1))))
+
+(use-package org-cliplink
+  :bind ("C-M-y" . org-cliplink))
+
+(use-package org-trello
+  :commands org-trello-mode
+  :init (add-hook-exec 'org-mode (lambda () (org-trello-mode 1))))
+
+(use-package org-dashboard
+  :commands org-dashboard-display)
+
+(use-package org
+  :config
+  (progn
+    (add-hook 'org-mode-hook
+              '(lambda ()
+                 (setq mode-name " ꙮ ")))
+    (bind-key* "C-c c" 'org-capture)
+    (bind-key* "C-c l" 'org-store-link)
+    (bind-key* "C-c a" 'org-agenda)
+    (bind-key* "C-c b" 'org-iswitch)))
+
+(use-package org-autolist
+  :commands org-autolist-mode)
+
+(use-package org
+  :config
+  ;; When clocking in, just use the time from the last clocked out
+  ;; item.
+  (setq org-clock-continuously t)
+
+  ;; Show drawers, e.g. :PROPERTIES:, when we expand a heading.
+  ;; See http://emacs.stackexchange.com/a/22540/304
+  (remove-hook 'org-cycle-hook #'org-cycle-hide-drawers)
+
+  ;; When creating or completing a TODO, record the timestamps.
+  (setq org-log-done 'time)
+
+  ;; Syntax highlight org code snippets.
+  (setq org-src-fontify-natively t)
+
+  ;; Allow running code in sh and python
+  (require 'ob-sh)
+  (require 'ob-python)
+
+  ;; Don't underline dates, it's distracting.
+  (custom-set-faces
+   '(org-date ((((class color)) (:underline nil))) t)))
+
+;; (require 'org-expiry)
+
+(add-hook 'org-after-todo-state-change-hook
+          (lambda ()
+            (when (string= org-state "TODO")
+              (save-excursion
+                (org-back-to-heading)
+                (org-expiry-insert-created)))))
+
 
 
 
