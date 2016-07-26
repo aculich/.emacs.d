@@ -1774,6 +1774,16 @@ Disable the highlighting of overlong lines."
   :defer t
   :diminish (yas-minor-mode . " Ⓨ"))
 
+;; (use-package yasnippet
+;;   :diminish yas-minor-mode
+;;   :init
+;;   (progn
+;;     (setq user-snippets-directory (expand-file-name "snippets" user-emacs-directory))
+;;     (make-directory user-snippets-directory t)
+;;     ;; (use-package yasnippets)
+;;     (yas-global-mode 1)
+;;     (setq-default yas/prompt-functions '(yas/ido-prompt))))
+
 (use-package company                    ; Graphical (auto-)completion
   :ensure t
   :init (global-company-mode)
