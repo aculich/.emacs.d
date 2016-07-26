@@ -1075,7 +1075,8 @@ Return the new window for BUFFER."
 (use-package bookmark                   ; Bookmarks for Emacs buffers
   :bind (("C-c f b" . list-bookmarks))
   ;; Save bookmarks immediately after a bookmark was added
-  :config (setq bookmark-save-flag 1))
+  :config (setq bookmark-save-flag 1
+                bookmark-default-file (expand-file-name "bookmarks" user-cache-directory)))
 
 (use-package recentf                    ; Save recently visited files
   :init (recentf-mode)
