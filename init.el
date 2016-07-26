@@ -1818,6 +1818,10 @@ Disable the highlighting of overlong lines."
 (use-package ispell                     ; Spell checking
   :defer t
   :config
+  (defun ispell-init-process-shutup (orig-fun &rest args)
+    (let ((inhibit-message t))
+      (apply orig-fun args)))
+  (advice-add #'ispell-init-process :around #'ispell-init-process-shutup)
   (setq ispell-program-name (if (eq system-type 'darwin)
                                 (executable-find "aspell")
                               (executable-find "hunspell"))
