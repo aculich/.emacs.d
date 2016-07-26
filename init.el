@@ -830,7 +830,8 @@ Return the new window for BUFFER."
   :bind (("C-c w <left>"  . windmove-left)
          ("C-c w <right>" . windmove-right)
          ("C-c w <up>"    . windmove-up)
-         ("C-c w <down>"  . windmove-down)))
+         ("C-c w <down>"  . windmove-down))
+  :config (windmove-default-keybindings 'shift))
 
 (use-package winner                     ; Undo and redo window configurations
   :commands (winner-undo-redo)
