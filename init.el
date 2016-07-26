@@ -1100,7 +1100,8 @@ Return the new window for BUFFER."
     (setq-default save-place t)
     (setq-default save-place-file (expand-file-name "places" user-cache-directory))))
 
-(setq view-read-only t)                 ; View read-only files
+;;;; disable because of weird interaction with other modes
+;; (setq view-read-only t)                 ; View read-only files
 
 (use-package autorevert                 ; Auto-revert buffers of changed files
   :init (global-auto-revert-mode)
