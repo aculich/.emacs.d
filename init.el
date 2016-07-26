@@ -2211,6 +2211,7 @@ Disable the highlighting of overlong lines."
 (use-package yaml-mode                  ; YAML
   :ensure t
   :defer t
+  :mode ("\\.yml$" . yaml-mode)
   :config
   (add-hook 'yaml-mode-hook
             (lambda ()
