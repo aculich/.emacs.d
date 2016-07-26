@@ -15,7 +15,7 @@ You need Emacs 25 snapshot builds, straight from Git `master`.  Stable releases 
 
 ```console
 $ git clone https://github.com/aculich/.emacs.d.git ~/.emacs.d
-$ brew install trash coreutils
+$ brew install trash coreutils tern
 $ brew install aspell --with-lang-en
 $ cd ~/.emacs.d && cask install
 ```
