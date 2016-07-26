@@ -1786,6 +1786,7 @@ Disable the highlighting of overlong lines."
 
 (use-package company                    ; Graphical (auto-)completion
   :ensure t
+  :diminish company-mode
   :init (global-company-mode)
   :config
   (setq company-tooltip-align-annotations t
