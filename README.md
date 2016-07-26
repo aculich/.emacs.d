@@ -14,7 +14,7 @@ Also, I prefer using [Cask](https://github.com/cask/cask) to install packages ra
 You need Emacs 25 snapshot builds, straight from Git `master`.  Stable releases of GNU Emacs won’t work, I build GNU Emacs weekly.
 
 ```console
-$ git clone https://github.com/lunaryorn/.emacs.d.git ~/.emacs.d
+$ git clone https://github.com/aculich/.emacs.d.git ~/.emacs.d
 $ brew install trash coreutils
 $ brew install aspell --with-lang-en
 $ cd ~/.emacs.d && cask install
