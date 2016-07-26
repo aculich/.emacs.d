@@ -2308,6 +2308,29 @@ Taken from http://stackoverflow.com/a/3072831/355252."
   (setq-default eldoc-documentation-function #'describe-char-eldoc)
   :diminish (eldoc-mode . " ⓓ"))
 
+(use-package emacs-lisp-mode
+  :init
+  (progn
+    (add-hook 'emacs-lisp-mode-hook (lambda() (setq mode-name "el")))
+    (bind-key "C-<return>" 'eval-region-or-last-sexp emacs-lisp-mode-map)
+    (use-package macrostep
+      :bind (("C-c e" . macrostep-expand)
+             ("C-A-e" . macrostep-expand))
+      :config
+      (progn
+        (bind-keys
+         :map macrostep-keymap
+         ("j" . macrostep-next-macro)
+         ("k" . macrostep-prev-macro)
+         ("C-A-n" . macrostep-next-macro)
+         ("C-A-p" . macrostep-prev-macro)
+         )))
+    (use-package ert
+      :config (add-to-list 'emacs-lisp-mode-hook 'ert--activate-font-lock-keywords)))
+  :bind (("M-." . find-function-at-point))
+  :interpreter (("emacs" . emacs-lisp-mode))
+  :mode ("Cask" . emacs-lisp-mode))
+
 (use-package etags                      ; Tag navigation
   :defer t
   :config
