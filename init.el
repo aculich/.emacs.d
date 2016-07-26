@@ -570,6 +570,8 @@ mouse-3: go to end"))))
   ;; (setq-default mode-line-format '("%e" (:eval (spaceline-ml-lunaryorn))))
   )
 
+;; Because you know you need it: http://youtu.be/QH2-TGUlwu4
+;; Because you know you can't get enough: http://youtu.be/wZZ7oFKsKzY
 (use-package nyan-mode                  ; NYAN CATS!!!
   :ensure t
   :init (nyan-mode))
@@ -761,9 +763,11 @@ Return the new window for BUFFER."
                 ))
 
 (use-package ibuffer                    ; Better buffer list
-  :bind (([remap list-buffers] . ibuffer))
+  :bind (([remap list-buffers] . ibuffer)
+         ("C-x b" . ibuffer))
   ;; Show VC Status in ibuffer
   :config
+  (setq ibuffer-expert t)
   (setq ibuffer-formats
         '((mark modified read-only vc-status-mini " "
                 (name 18 18 :left :elide)
