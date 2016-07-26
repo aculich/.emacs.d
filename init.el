@@ -1690,7 +1690,23 @@ Disable the highlighting of overlong lines."
     (add-hook hook #'rainbow-delimiters-mode)))
 
 (use-package hi-lock                    ; Custom regexp highlights
-  :init (global-hi-lock-mode))
+  :diminish hi-lock-mode
+  :init
+  (setq hi-lock-file-patterns-policy t)
+  (global-hi-lock-mode 1)
+  :config
+  (bind-keys
+   :map hi-lock-map
+   ("C-z C-h" . highlight-lines-matching-regexp)
+   ("C-z i"   . hi-lock-find-patterns)
+   ("C-z h"   . highlight-regexp)
+   ("C-z p"   . highlight-phrase)
+   ("C-z r"   . unhighlight-regexp)
+   ("C-z b"   . hi-lock-write-interactive-patterns)))
+
+
+;; (use-package idle-highlight-mode
+;;   :diminish idle-highlight-mode)
 
 (use-package highlight-numbers          ; Fontify number literals
   :ensure t
