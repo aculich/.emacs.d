@@ -63,7 +63,7 @@
 (setq load-prefer-newer t)
 
 (require 'cask "~/.cask/cask.el")
-(cask-initialize)
+(ignore-errors (cask-initialize))
 
 ;; (require 'package)
 ;; (setq package-enable-at-startup nil)
