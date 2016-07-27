@@ -3490,13 +3490,22 @@ for more information about CALLBACK."
     (setf erc-nick "skeeto")))
 
 (use-package eshell
-  :bind ([f1] . eshell-as)
+  :bind (([f1] . eshell-as)
+         ("A-e" . eshell))
   :init
   (setf eshell-directory-name (locate-user-emacs-file "local/eshell"))
+  (add-hook 'eshell-first-time-mode-hook
+            (lambda ()
+              (add-to-list 'eshell-visual-commands "htop")))
   :config
   (add-hook 'eshell-mode-hook ; Bad, eshell, bad!
             (lambda ()
-              (define-key eshell-mode-map (kbd "<f1>") #'quit-window))))
+              (define-key eshell-mode-map (kbd "<f1>") #'quit-window)))
+  (setq eshell-history-size 5000)
+  (setq eshell-save-history-on-exit t)
+
+  (use-package nyan-prompt
+    :init (add-hook 'eshell-load-hook 'nyan-prompt-enable)))
 
 (use-package ido
   :init
