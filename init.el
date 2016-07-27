@@ -4182,7 +4182,192 @@ for more information about CALLBACK."
 (use-package org-autolist
   :commands org-autolist-mode)
 
-;; (require 'org-expiry)
+
+
+(use-package custom
+  :config (setq custom-unlispify-tag-names nil))
+
+
+(use-package drag-stuff
+  :diminish drag-stuff-mode
+  :init (drag-stuff-global-mode 1)
+  :bind (("M-N" . drag-stuff-down)
+         ("M-P" . drag-stuff-up)))
+
+(use-package misc
+  :bind ("M-z" . zap-up-to-char))
+
+
+
+(use-package git-messenger
+  :defer t
+  :bind (("C-x v p" . git-messenger:popup-message))
+  :config (bind-keys :map git-messenger-map
+                     ("m" . magit-blame-mode)))
+
+(use-package ace-jump-mode
+  :bind ("C-c SPC" . ace-jump-mode))
+
+(use-package ace-isearch
+  :disabled t
+  :init
+  (progn
+    (setq ace-isearch-submode 'ace-jump-word-mode)
+    ;; (setq ace-isearch-submode 'ace-jump-line-mode)
+    (global-ace-isearch-mode +1)))
+
+
+(use-package aggressive-indent
+  :disabled t
+  :init
+  (progn
+    (global-aggressive-indent-mode 1)
+    (add-to-list 'aggressive-indent-excluded-modes 'html-mode)))
+
+(use-package ess
+  :defer t
+  :init
+  (progn
+    (add-to-list 'safe-local-variable-values '(outline-minor-mode))
+    (add-to-list 'safe-local-variable-values '(whitespace-style face tabs spaces trailing lines space-before-tab::space newline indentation::space empty space-after-tab::space space-mark tab-mark newline-mark))
+    ))
+
+(use-package ruby-mode
+  :defer t
+  :init
+  (progn
+    (use-package rvm
+      :defer t
+      :init (rvm-use-default)
+      :config (setq rvm-verbose nil))
+    (use-package ruby-tools
+      :defer t)
+    (use-package rhtml-mode
+      :defer t
+      :mode (("\\.rhtml$" . rhtml-mode)
+             ("\\.html\\.erb$" . rhtml-mode)))
+    (use-package rinari
+      :defer t
+      :init (global-rinari-mode 1)
+      :config
+      (progn
+        (setq ruby-insert-encoding-magic-comment nil)
+        (add-hook 'magit-mode-hook 'rinari-launch)))
+    (use-package rspec-mode
+      :defer t
+      :config
+      (progn
+        (setq rspec-use-rvm t)
+        (setq rspec-use-rake-when-possible nil)
+        (defadvice rspec-compile (around rspec-compile-around activate)
+          "Use BASH shell for running the specs because of ZSH issues."
+          (let ((shell-file-name "/bin/bash"))
+            ad-do-it)))))
+  :config
+  (progn
+    (add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
+    (setq ruby-deep-indent-paren nil))
+  :bind (("C-M-h" . backward-kill-word)
+         ("C-M-n" . scroll-up-five)
+         ("C-M-p" . scroll-down-five))
+  :mode (("\\.rake$" . ruby-mode)
+         ("\\.gemspec$" . ruby-mode)
+         ("\\.ru$" . ruby-mode)
+         ("Rakefile$" . ruby-mode)
+         ("Gemfile$" . ruby-mode)
+         ("Capfile$" . ruby-mode)
+         ("Guardfile$" . ruby-mode)))
+
+(use-package feature-mode
+  :defer t
+  :mode ("\\.feature$" . feature-mode)
+  :config
+  (add-hook 'feature-mode-hook
+            (lambda ()
+              (electric-indent-mode -1))))
+
+(use-package editorconfig
+  :init
+  (progn
+    (remove-hook 'find-file-hook 'edconf-find-file-hook)
+    ))
+
+(use-package prodigy
+  :init (progn
+          (add-hook 'prodigy-mode-hook
+                    (lambda ()
+                      (setq-local show-trailing-whitespace nil))))
+  :demand t
+  :bind ("C-x p" . prodigy))
+
+(use-package discover
+  :init (global-discover-mode 1))
+
+(use-package ert-async
+  :defer t
+  :config (progn
+            (remove-hook 'emacs-lisp-mode-hook 'ert--activate-font-lock-keywords)
+            (add-hook 'emacs-lisp-mode-hook 'ert-async-activate-font-lock-keywords)))
+
+(use-package cl-lib-highlight
+  :init (cl-lib-highlight-initialize))
+
+(use-package httprepl
+  :defer t)
+
+;; (use-package ack-and-a-half)
+
+(use-package ag
+  :defer t)
+
+(use-package path-headerline-mode
+  :init
+  (progn
+    (path-headerline-mode +1)))
+
+(use-package epa-file
+    :defer t)
+
+;;; http://metasandwich.com/2013/01/19/emacs-config-youre-doing-it-wrong/
+;;; http://www.fieggen.com/shoelace/ianknot.htm
+;; (defun imenu-elisp-sections ()
+;;   (setq imenu-prev-index-position-function nil)
+;;   (add-to-list 'imenu-generic-expression '("Sections" "^;;;; \\(.+\\)$" 1) t))
+;; (add-hook 'emacs-lisp-mode-hook 'imenu-elisp-sections)
+
+
+
+
+(use-package google-this
+  :commands (google-this-mode-submap)
+  :bind (("C-x g" . google-this-mode-submap)))
+
+(use-package dired-toggle-sudo
+  :defer t
+  :bind (("C-x s" . dired-toggle-sudo)))
+
+(use-package save-visited-files
+  :disabled t
+  :init
+  (progn
+    (setq-default save-visited-files-location (expand-file-name "emacs-visited-files" user-cache-directory))
+    (turn-on-save-visited-files-mode)))
+
+(use-package pos-tip)
+
+(use-package register-channel
+  :defer t
+  :init
+  (progn
+    (register-channel-mode 1)))
+
+(use-package url
+  :defer t
+  :init
+  (progn
+    (setq-default url-configuration-directory (expand-file-name "url" user-cache-directory))
+    (setq-default url-cache-directory (expand-file-name "cache" url-configuration-directory))))
+
 
 
 (use-package crux
