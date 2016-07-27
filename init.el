@@ -2627,10 +2627,64 @@ the REPL in a new frame instead."
   (add-hook 'python-mode-hook (lambda () (setq fill-column 79)))
   (add-hook 'python-mode-hook #'subword-mode)
 
-  (let ((ipython (executable-find "ipython")))
+  (let ((ipython (executable-find "ipython3")))
     (if ipython
         (setq python-shell-interpreter ipython)
-      (warn "IPython is missing, falling back to default python"))))
+      (warn "IPython is missing, falling back to default python")))
+
+  (bind-key "C-<return>" 'python-shell-send-region python-mode-map)
+  (bind-key "M-p" 'backward-paragraph python-mode-map)
+  (bind-key "M-n" 'forward-paragraph python-mode-map)
+
+  (setq python-shell-interpreter-args ""
+        python-shell-interpreter-interactive-arg "")
+  (use-package eval-in-repl-python
+    :init
+    (progn
+      (defun eir-eval-in-python ()
+        "eval-in-repl for Python."
+        (interactive)
+        ;; Define local variables
+        (let* ((script-window (selected-window)))
+          ;;
+          (eir-repl-start "*Python*" #'run-python)
+
+          ;; Check if selection is present
+          (if (and transient-mark-mode mark-active)
+              ;; If selected, send region
+              (let* ((body (buffer-substring-no-properties (point) (mark)))
+                     (paste (concat "%cpaste -q \n" body "\n--")))
+                (eir-send-to-python paste))
+
+            ;; If not selected, do all the following
+            ;; Move to the beginning of line
+            (beginning-of-line)
+            ;; Set mark at current position
+            (set-mark (point))
+            ;; Go to the end of statement
+            (python-nav-end-of-statement)
+            ;; Go to the end of block
+            (python-nav-end-of-block)
+            ;; Send region if not empty
+            (if (not (equal (point) (mark)))
+                ;; Add one more character for newline unless at EOF
+                ;; This does not work if the statement asks for an input.
+                (let* ((body (buffer-substring-no-properties
+                              (min (+ 1 (point)) (point-max))
+                              (mark)))
+                       (paste (concat "%cpaste -q \n" body "\n--")))
+                  (eir-send-to-python paste))
+              ;; If empty, deselect region
+              (setq mark-active nil))
+            ;; Move to the next statement
+            (python-nav-forward-statement)
+
+            ;; Switch to the shell
+            (python-shell-switch-to-shell)
+            ;; Switch back to the script window
+            (select-window script-window))))
+
+      (bind-key "C-<return>" 'eir-eval-in-python python-mode-map))))
 
 (use-package lunaryorn-virtualenv       ; Personal virtualenv tools
   :load-path "lisp/"
