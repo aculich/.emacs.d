@@ -4167,23 +4167,29 @@ for more information about CALLBACK."
                  ))
 
 (use-package org-bullets
+  :after org
   :commands org-bullets-mode
-  :init (add-hook-exec 'org-mode (lambda () (org-bullets-mode 1))))
+  :init (add-hook 'org-mode (lambda () (org-bullets-mode 1))))
 
 (use-package org-cliplink
+  :after org
   :bind ("C-M-y" . org-cliplink))
 
 (use-package org-trello
+  :after org
   :commands org-trello-mode
-  :init (add-hook-exec 'org-mode (lambda () (org-trello-mode 1))))
+  :init (add-hook 'org-mode (lambda () (org-trello-mode 1))))
 
 (use-package org-dashboard
+  :after org
   :commands org-dashboard-display)
 
 (use-package org-expiry
+  :after org
   :defer t)
 
 (use-package org-autolist
+  :after org
   :commands org-autolist-mode)
 
 
