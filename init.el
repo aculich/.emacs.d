@@ -3512,6 +3512,9 @@ for more information about CALLBACK."
           ido-everywhere t)
     (ido-mode +1)))
 
+;; (use-package ido-vertical-mode
+;;   :init (ido-vertical-mode 1))
+
 (use-package flx
   :ensure t)
 
