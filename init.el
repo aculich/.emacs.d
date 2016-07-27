@@ -4290,7 +4290,7 @@ for more information about CALLBACK."
          ("Guardfile$" . ruby-mode)))
 
 (use-package feature-mode
-  :after ert
+  :defer t
   :mode ("\\.feature$" . feature-mode)
   :config
   (add-hook 'feature-mode-hook
