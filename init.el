@@ -4115,7 +4115,6 @@ for more information about CALLBACK."
 
 
 
-(load "dot-org")
 
 (use-package org
   :mode ("\\.org$" . org-mode)
@@ -4126,7 +4125,9 @@ for more information about CALLBACK."
          ("C-S-<tab>" . other-window-previous)
          ;; ("C-'" . org-cycle-agenda-files)
          ("C-c b" . org-iswitchb))
-  :config (progn ;;(setq org-default-notes-file (concat org-directory "/notes.org"))
+  :config (progn (load "dot-org")
+
+                 ;;(setq org-default-notes-file (concat org-directory "/notes.org"))
                  (setq org-tags-column -90)
                  (setq org-capture-bookmark t)
                  (setq org-refile-use-outline-path 'file)
@@ -4174,6 +4175,9 @@ for more information about CALLBACK."
 
 (use-package org-dashboard
   :commands org-dashboard-display)
+
+(use-package org-expiry
+  :defer t)
 
 (use-package org-autolist
   :commands org-autolist-mode)
