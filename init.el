@@ -2703,6 +2703,7 @@ the REPL in a new frame instead."
   :init (add-hook 'python-mode-hook #'anaconda-mode))
 
 (use-package company-anaconda           ; Python backend for Company
+  :defer t
   :ensure t
   :after company
   :config (add-to-list 'company-backends 'company-anaconda))
