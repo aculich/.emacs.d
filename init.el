@@ -1492,6 +1492,7 @@ Return the new window for BUFFER."
   (advice-add #'mark-sexp :around #'expand-region-on-scan-error))
 
 (use-package undo-tree                  ; Branching undo
+  :disabled t
   :ensure t
   :init (global-undo-tree-mode)
   :diminish undo-tree-mode)
