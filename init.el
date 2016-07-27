@@ -3430,7 +3430,28 @@ for more information about CALLBACK."
     (add-hook 'c-mode-hook #'skeeto/c-hook)
     (add-hook 'c++-mode-hook #'skeeto/c-hook)
     (add-to-list 'c-default-style '(c-mode . "k&r"))
-    (add-to-list 'c-default-style '(c++-mode . "k&r"))))
+    (add-to-list 'c-default-style '(c++-mode . "k&r"))
+    (add-hook 'java-mode-hook
+              (lambda ()
+                (setq c-basic-offset 2
+                      tab-width 2
+                      indent-tabs-mode nil)))
+
+    (defun java-build (&optional arg)
+      (interactive)
+      (save-buffer)
+      (let ((compilation-read-command nil))
+        (projectile-compile-project nil)))
+    (bind-key "C-<return>" 'java-build java-mode-map)
+    (bind-key "C-c C-c" 'compile java-mode-map)))
+
+;; (use-package cc-mode
+;;   :config
+;;   (progn
+;;     (add-hook 'c-mode-hook (lambda () (c-set-style "bsd")))
+;;     (add-hook 'java-mode-hook (lambda () (c-set-style "bsd") (setq tab-width 2) (setq c-basic-offset 2) (setq indent-tabs-mode nil)))
+;;     (setq tab-width 2)
+;;     (setq c-basic-offset 2)))
 
 (use-package clojure-mode
   :ensure t
