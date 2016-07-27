@@ -4290,7 +4290,7 @@ for more information about CALLBACK."
          ("Guardfile$" . ruby-mode)))
 
 (use-package feature-mode
-  :defer t
+  :after ert
   :mode ("\\.feature$" . feature-mode)
   :config
   (add-hook 'feature-mode-hook
@@ -4315,7 +4315,7 @@ for more information about CALLBACK."
   :init (global-discover-mode 1))
 
 (use-package ert-async
-  :defer t
+  :after ert
   :config (progn
             (remove-hook 'emacs-lisp-mode-hook 'ert--activate-font-lock-keywords)
             (add-hook 'emacs-lisp-mode-hook 'ert-async-activate-font-lock-keywords)))
