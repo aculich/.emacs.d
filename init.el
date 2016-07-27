@@ -2799,6 +2799,36 @@ the REPL in a new frame instead."
   :config
   (js2r-add-keybindings-with-prefix "C-c m r"))
 
+(use-package coffee-mode
+  :defer t
+  :config
+  (progn
+    (add-hook 'coffee-mode-hook
+              (lambda ()
+                (bind-key "C-j" 'coffee-newline-and-indent coffee-mode-map)
+                (bind-key "C-M-h" 'backward-kill-word coffee-mode-map)
+                (setq coffee-tab-width 2)))))
+
+(use-package web-mode
+  :defer t
+  :init (progn
+          (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
+  :config (progn
+            (add-hook 'web-mode-hook
+                      (lambda ()
+                        (setq web-mode-style-padding 2)
+                        (setq web-mode-script-padding 2)))))
+
+(use-package nvm
+  :defer t)
+(use-package html-script-src
+  :defer t)
+(use-package haml-mode
+  :defer t)
+(use-package sass-mode
+  :defer t)
+
 (use-package tern                       ; Javascript IDE backend
   :ensure t
   :defer t
