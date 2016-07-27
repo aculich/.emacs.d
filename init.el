@@ -2377,13 +2377,53 @@ Taken from http://stackoverflow.com/a/3072831/355252."
   :init (rxt-global-mode))
 
 (use-package ielm                       ; Emacs Lisp REPL
-  :bind (("C-c a '" . ielm))
+  :bind (("C-c a '" . ielm)
+         ("C-c :"   . ielm))
   :config                               ; https://github.com/skeeto/.emacs.d
   (progn
     (define-key ielm-map (kbd "C-c C-z") #'quit-window)
     (defadvice ielm-eval-input (after ielm-paredit activate)
       "Begin each ielm prompt with a paredit pair."
-      (paredit-open-round))))
+      (paredit-open-round))
+    (defun my-ielm-return ()
+      (interactive)
+      (let ((end-of-sexp (save-excursion
+                           (goto-char (point-max))
+                           (skip-chars-backward " \t\n\r")
+                           (point))))
+        (if (>= (point) end-of-sexp)
+            (progn
+              (goto-char (point-max))
+              (skip-chars-backward " \t\n\r")
+              (delete-region (point) (point-max))
+              (call-interactively #'ielm-return))
+          (call-interactively #'paredit-newline))))
+
+    (defun my-ielm-return-again ()
+      (interactive)
+      (let ((p (point))
+            (end-of-sexp (save-excursion
+                           (goto-char (point-max))
+                           (skip-chars-backward " \t\n\r")
+                           (point))))
+        (goto-char (point-max))
+        (skip-chars-backward " \t\n\r")
+        (delete-region (point) (point-max))
+        (call-interactively #'ielm-return)
+        (comint-previous-input 1)
+        (backward-char (- end-of-sexp p))
+        (comint-kill-region (point-min) (+ end-of-sexp 1))))
+
+    (add-hook 'ielm-mode-hook
+              (function
+               (lambda ()
+                 (bind-key "C-<return>" 'my-ielm-return ielm-map)))
+              t)
+    (add-hook 'ielm-mode-hook
+              (function
+               (lambda ()
+                 (bind-key "<return>" 'my-ielm-return-again ielm-map)))
+              t)))
 
 (use-package elisp-mode                 ; Emacs Lisp editing
   :defer t
