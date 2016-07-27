@@ -2877,11 +2877,13 @@ the REPL in a new frame instead."
 
 ;;; Databases
 (use-package sql                        ; SQL editing and REPL
+  :defer t
   :bind (("C-c a s" . sql-connect)
          :map sql-mode-map
          ("C-c m p" . sql-set-product)))
 
 (use-package sqlup-mode                 ; Upcase SQL keywords
+  :defer t
   :ensure t
   :bind (:map sql-mode-map
               ("C-c m u" . sqlup-capitalize-keywords-in-region))
@@ -2897,6 +2899,7 @@ the REPL in a new frame instead."
 
 (use-package what-the-commit            ; Insert random commit messages
   :ensure t
+  :defer t
   :bind (("C-c i w" . what-the-commit-insert)
          ("C-c g w" . what-the-commit)))
 
@@ -3015,6 +3018,7 @@ the REPL in a new frame instead."
 
 (use-package git-timemachine            ; Go back in Git time
   :ensure t
+  :defer t
   :bind (("C-c g t" . git-timemachine)))
 
 (use-package helm-gitignore             ; Generate gitignore files
@@ -3088,6 +3092,7 @@ the REPL in a new frame instead."
 
 (use-package github-clone               ; Clone and fork from Github
   :ensure t
+  :defer t
   :bind ("C-c g g c" . github-clone))
 
 (use-package helm-open-github ; Open Github pages for current repo
@@ -3165,6 +3170,7 @@ the REPL in a new frame instead."
 
 ;;; Processes and commands
 (use-package proced                     ; Edit system processes
+  :defer t
   ;; Proced isn't available on OS X
   :if (not (eq system-type 'darwin))
   :bind ("C-x p" . proced))
@@ -3172,6 +3178,7 @@ the REPL in a new frame instead."
 
 ;;; Date and time
 (use-package calendar                   ; Built-in calendar
+  :defer t
   :bind ("C-c a c" . calendar)
   :config
   ;; In Europe we start on Monday
@@ -3193,9 +3200,11 @@ the REPL in a new frame instead."
 
 ;;; Terminal emulation and shells
 (use-package shell                      ; Dump shell in Emacs
+  :defer t
   :bind ("C-c a t" . shell))
 
 (use-package term                       ; Terminal emulator in Emacs
+  :defer t
   :bind ("C-c a T" . ansi-term))
 
 
@@ -4002,7 +4011,8 @@ for more information about CALLBACK."
     ;; eshell 3 is always my "download stuff" buffer
     (global-set-key (kbd "C-x M-d") #'my/popup-downloads)))
 
-(use-package powershell)
+(use-package powershell
+  :defer t)
 
 (use-package recompile-on-save
   :disabled t
@@ -4040,6 +4050,7 @@ for more information about CALLBACK."
   :defer t)
 
 (use-package vagrant
+  :defer t
   :config
   (progn
     (use-package vagrant-tramp)))
