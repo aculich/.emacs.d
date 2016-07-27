@@ -2840,7 +2840,6 @@ the REPL in a new frame instead."
 (use-package company-tern               ; Auto-completion for javascript
   :ensure t
   :defer t
-  :defer t
   :after company
   :config (add-to-list 'company-backends 'company-tern))
 
