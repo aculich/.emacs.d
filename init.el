@@ -3138,13 +3138,16 @@ the REPL in a new frame instead."
     (add-to-list 'projectile-globally-ignored-files ".DS_Store")
 
     (use-package cc-mode
+      :defer t
       :config (bind-key "C-c C-c" 'projectile-compile-project java-mode-map))
     (use-package make-mode
+      :defer t
       :config (bind-key "C-c C-c" 'projectile-compile-project makefile-mode-map)))
 
   :diminish projectile-mode)
 
 (use-package helm-projectile            ; Helm frontend for Projectile
+  :defer t
   :ensure t
   :after projectile
   :bind (([remap projectile-find-file] . helm-projectile-find-file)
@@ -3315,6 +3318,7 @@ for more information about CALLBACK."
   (zone-when-idle zone-timeout))
 
 (use-package zone-nyan                  ; Not exactly useful but <3
+  :defer t
   :ensure t
   :after zone
   :config (setq zone-programs (vconcat [zone-nyan] zone-programs)))
@@ -3420,6 +3424,7 @@ for more information about CALLBACK."
   :config (setf calc-display-trail nil))
 
 (use-package make-mode
+  :defer t
   :config
   (progn
     (bind-key "C-c C-c" 'compile makefile-mode-map)))
@@ -3462,6 +3467,7 @@ for more information about CALLBACK."
 ;;     (setq c-basic-offset 2)))
 
 (use-package clojure-mode
+  :defer t
   :ensure t
   :mode "\\.cljs$")
 
