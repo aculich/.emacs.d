@@ -2793,6 +2793,7 @@ the REPL in a new frame instead."
 
 (use-package js2-refactor               ; Refactor Javascript
   :ensure t
+  :defer t
   :init
   (add-hook 'js2-mode-hook 'js2-refactor-mode)
   :config
