@@ -2753,11 +2753,22 @@ the REPL in a new frame instead."
   :defer t
   :config (setq css-indent-offset 2))
 
+(use-package js-mode
+  :defer t
+  :mode ()
+  :init
+  (progn
+    (add-hook 'js-mode-hook (lambda () (setq js-indent-level 2)))))
+
 (use-package js2-mode                   ; Powerful Javascript mode
   :ensure t
   :defer t
-  :mode (("\\.js\\'" . js2-mode)
-         ("\\.jsx\\'" . js2-jsx-mode))
+  :interpreter ("node"   . js2-mode)
+  :mode (("\\.js\\'"     . js2-mode)
+         ("\\.jsx\\'"    . js2-jsx-mode)
+         ("\\.json$"     . js-mode)
+         ("\\.template$" . json-mode)
+         ("Jakefile$"    . js2-mode))
   ;; :config
   ;; ;; Disable parser errors and strict warnings.  We have Flycheck 8)
   ;; (setq js2-mode-show-parse-errors nil
@@ -2767,6 +2778,9 @@ the REPL in a new frame instead."
   :config
   (progn
     (add-hook 'js2-mode-hook (lambda () (setq mode-name "js2")))
+    (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2)))
+    (add-hook 'js2-mode-hook (lambda ()
+                               (bind-key "M-j" 'join-line-or-lines-in-region js2-mode-map)))
     (setq js2-skip-preprocessor-directives t
           js2-mode-show-parse-errors nil
           js2-mode-show-strict-warnings nil
