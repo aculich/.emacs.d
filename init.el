@@ -4007,6 +4007,7 @@ for more information about CALLBACK."
 (use-package powershell
   :defer t)
 
+;; use this instead of ascmd auto-shell-command
 (use-package recompile-on-save
   :disabled t
   :init
