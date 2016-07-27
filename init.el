@@ -3360,6 +3360,9 @@ for more information about CALLBACK."
   :init (add-hook 'yaml-mode-hook #'ansible-doc-mode)
   :diminish (ansible-doc-mode . " Ⓓ"))
 
+(use-package dash
+  :config (dash-enable-font-lock))
+
 (use-package dash-at-point              ; Jump to Dash docset at point
   :ensure t
   :defer t
