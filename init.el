@@ -2753,13 +2753,6 @@ the REPL in a new frame instead."
   :defer t
   :config (setq css-indent-offset 2))
 
-(use-package js-mode
-  :defer t
-  :mode ()
-  :init
-  (progn
-    (add-hook 'js-mode-hook (lambda () (setq js-indent-level 2)))))
-
 (use-package js2-mode                   ; Powerful Javascript mode
   :ensure t
   :defer t
