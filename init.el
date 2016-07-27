@@ -969,13 +969,11 @@ Return the new window for BUFFER."
                   '(helm-source-mac-spotlight)))))
 
 (use-package ffap                       ; Find files at point
-  :defer t
   ;; Please stop pinging random hosts!  See
   ;; https://github.com/technomancy/emacs-starter-kit/issues/39
   :config (setq ffap-machine-p-known 'reject))
 
 (use-package server                     ; The server of `emacsclient'
-  :defer t
   :init (server-mode)
   :diminish (server-buffer-clients . " ⓒ"))
 
