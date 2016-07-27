@@ -3416,6 +3416,11 @@ for more information about CALLBACK."
   :defer t
   :config (setf calc-display-trail nil))
 
+(use-package make-mode
+  :config
+  (progn
+    (bind-key "C-c C-c" 'compile makefile-mode-map)))
+
 (use-package cc-mode
   :defer t
   :init
