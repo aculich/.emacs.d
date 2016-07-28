@@ -4186,7 +4186,7 @@ for more information about CALLBACK."
 
   ;; Don't underline dates, it's distracting.
   (custom-set-faces
-   '(org-date ((((class color)) (:underline nil))) t))))
+   '(org-date ((((class color)) (:underline nil))) t)))
 
 (use-package org-bullets
   :after org
