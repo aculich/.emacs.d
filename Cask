@@ -679,6 +679,8 @@
 (depends-on "window-layout")
 (depends-on "window-number")
 (depends-on "window-numbering")
+(depends-on "helm-purpose")
+(depends-on "ivy-purpose")
 (depends-on "window-purpose")
 (depends-on "windresize")
 (depends-on "windsize")
