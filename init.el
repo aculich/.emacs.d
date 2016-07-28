@@ -4126,9 +4126,10 @@ for more information about CALLBACK."
   :bind (("C-c l" . org-store-link)
          ("C-c c" . org-capture)
          ("C-c a" . org-agenda)
-         ;; ("C-'" . org-cycle-agenda-files)
          ("C-c b" . org-iswitchb)
          :map org-mode-map
+         ("C-'" . winner-undo-redo)
+         ("A-'" . org-cycle-agenda-files)
          ("C-<tab>" . other-window)
          ("C-S-<tab>" . other-window-previous)
 )
