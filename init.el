@@ -4133,7 +4133,15 @@ for more information about CALLBACK."
          ("C-S-<tab>" . other-window-previous)
 )
   :config (progn (load "dot-org")
-
+                 ;; http://notesyoujustmightwanttosave.blogspot.com/2011/12/org-speed-keys.html
+                 (setq org-speed-commands-user
+                       '(("q" . org-cut-subtree)
+                         ("j" . (org-speed-move-safe 'org-next-visible-heading))
+                         ("k" . (org-speed-move-safe 'org-previous-visible-heading))
+                         ("h" . (org-speed-move-safe 'org-forward-heading-same-level))
+                         ("y" . (org-speed-move-safe 'org-backward-heading-same-level))
+                         ("g" . org-goto)
+                         ("G" . (org-refile t))))
                  ;;(setq org-default-notes-file (concat org-directory "/notes.org"))
                  (setq org-tags-column -90)
                  (setq org-capture-bookmark t)
