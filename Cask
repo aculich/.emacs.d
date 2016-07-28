@@ -696,6 +696,9 @@
 (depends-on "zop-to-char")
 (depends-on "ztree")
 
+(depends-on "bm")
+(depends-on "cbm")
+
 (depends-on "cabledolphin")                           ; 20160204.138  available    melpa      capture Emacs network traffic
 
 (depends-on "helm-org-rifle")                         ; 20160420.818  available  melpa      Rifle through your Org files
