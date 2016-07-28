@@ -4126,10 +4126,12 @@ for more information about CALLBACK."
   :bind (("C-c l" . org-store-link)
          ("C-c c" . org-capture)
          ("C-c a" . org-agenda)
+         ;; ("C-'" . org-cycle-agenda-files)
+         ("C-c b" . org-iswitchb)
+         :map org-mode-map
          ("C-<tab>" . other-window)
          ("C-S-<tab>" . other-window-previous)
-         ;; ("C-'" . org-cycle-agenda-files)
-         ("C-c b" . org-iswitchb))
+)
   :config (progn (load "dot-org")
 
                  ;;(setq org-default-notes-file (concat org-directory "/notes.org"))
