@@ -4133,8 +4133,18 @@ for more information about CALLBACK."
          ("C-<tab>" . other-window)
          ("C-S-<tab>" . other-window-previous)
 )
+  :init
+  (use-package dot-org
+    :commands my-org-startup
+    :bind (("M-C"   . jump-to-org-agenda)
+           ("M-m"   . org-smart-capture)
+           ("M-M"   . org-inline-note)
+           ("C-. n" . org-velocity-read))
+    :defer 30
+    :config
+    (run-with-idle-timer 300 t 'jump-to-org-agenda)
+    (my-org-startup))
   :config
-  (load "dot-org")
   ;; http://notesyoujustmightwanttosave.blogspot.com/2011/12/org-speed-keys.html
   (setq org-speed-commands-user
         '(("q" . org-cut-subtree)
