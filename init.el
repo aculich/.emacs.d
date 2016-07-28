@@ -1078,19 +1078,12 @@ Return the new window for BUFFER."
 
 (use-package bm
   :bind (("<C-f2>" . bm-toggle)
-         ("<f2>" . bm-next)
+         ("<f2>"   . bm-next)
          ("<S-f2>" . bm-previous)))
 
 (use-package cbm
   :bind (("C-S-<tab>"   . cbm-cycle)
-         ("C-c C-x C-b" . cbm-switch-buffer))
-
-;; (global-set-key (kbd "C-;") #'cbm-cycle)
-;; (global-set-key (kbd "C-'") #'cbm-switch-buffer)
-;; (global-set-key (kbd "C-c o") #'cbm-find-org-agenda-file)
-;; (define-key rcirc-mode-map (kbd "M-i") #'cbm-rcirc-switch-to-channel)
-
-)
+         ("C-c C-x C-b" . cbm-switch-buffer)))
 
 (use-package recentf                    ; Save recently visited files
   :init (recentf-mode)
