@@ -4133,50 +4133,50 @@ for more information about CALLBACK."
          ("C-<tab>" . other-window)
          ("C-S-<tab>" . other-window-previous)
 )
-  :config (progn (load "dot-org")
-                 ;; http://notesyoujustmightwanttosave.blogspot.com/2011/12/org-speed-keys.html
-                 (setq org-speed-commands-user
-                       '(("q" . org-cut-subtree)
-                         ("j" . (org-speed-move-safe 'org-next-visible-heading))
-                         ("k" . (org-speed-move-safe 'org-previous-visible-heading))
-                         ("h" . (org-speed-move-safe 'org-forward-heading-same-level))
-                         ("y" . (org-speed-move-safe 'org-backward-heading-same-level))
-                         ("g" . org-goto)
-                         ("G" . (org-refile t))))
-                 ;;(setq org-default-notes-file (concat org-directory "/notes.org"))
-                 (setq org-tags-column -90)
-                 (setq org-capture-bookmark t)
-                 (setq org-refile-use-outline-path 'file)
-                 (setq org-startup-folded 'showeverything)
-                 (setq org-log-done 'note)
-                 ;; When clocking in, just use the time from the last clocked out
-                 ;; item.
-                 (setq org-clock-continuously t)
+  :config
+  (load "dot-org")
+  ;; http://notesyoujustmightwanttosave.blogspot.com/2011/12/org-speed-keys.html
+  (setq org-speed-commands-user
+        '(("q" . org-cut-subtree)
+          ("j" . (org-speed-move-safe 'org-next-visible-heading))
+          ("k" . (org-speed-move-safe 'org-previous-visible-heading))
+          ("h" . (org-speed-move-safe 'org-forward-heading-same-level))
+          ("y" . (org-speed-move-safe 'org-backward-heading-same-level))
+          ("g" . org-goto)
+          ("G" . (org-refile t))))
+  ;;(setq org-default-notes-file (concat org-directory "/notes.org"))
+  (setq org-tags-column -90)
+  (setq org-capture-bookmark t)
+  (setq org-refile-use-outline-path 'file)
+  (setq org-startup-folded 'showeverything)
+  (setq org-log-done 'note)
+  ;; When clocking in, just use the time from the last clocked out
+  ;; item.
+  (setq org-clock-continuously t)
 
-                 ;; When creating or completing a TODO, record the timestamps.
-                 (setq org-log-done 'time)
+  ;; When creating or completing a TODO, record the timestamps.
+  (setq org-log-done 'time)
 
-                 ;; Syntax highlight org code snippets.
-                 (setq org-src-fontify-natively t)
+  ;; Syntax highlight org code snippets.
+  (setq org-src-fontify-natively t)
 
-                 (define-key org-mode-map (kbd "C-M-\\") 'org-indent-region)
-                 (add-hook 'org-mode-hook
-                           '(lambda ()
-                              (setq mode-name " ꙮ ")))
-                 (add-hook 'org-after-todo-state-change-hook
-                           (lambda ()
-                             (when (string= org-state "TODO")
-                               (save-excursion
-                                 (org-back-to-heading)
-                                 (org-expiry-insert-created)))))
-                 ;; Show drawers, e.g. :PROPERTIES:, when we expand a heading.
-                 ;; See http://emacs.stackexchange.com/a/22540/304
-                 (remove-hook 'org-cycle-hook #'org-cycle-hide-drawers)
+  (define-key org-mode-map (kbd "C-M-\\") 'org-indent-region)
+  (add-hook 'org-mode-hook
+            '(lambda ()
+               (setq mode-name " ꙮ ")))
+  (add-hook 'org-after-todo-state-change-hook
+            (lambda ()
+              (when (string= org-state "TODO")
+                (save-excursion
+                  (org-back-to-heading)
+                  (org-expiry-insert-created)))))
+  ;; Show drawers, e.g. :PROPERTIES:, when we expand a heading.
+  ;; See http://emacs.stackexchange.com/a/22540/304
+  (remove-hook 'org-cycle-hook #'org-cycle-hide-drawers)
 
-                 ;; Don't underline dates, it's distracting.
-                 (custom-set-faces
-                  '(org-date ((((class color)) (:underline nil))) t))
-                 ))
+  ;; Don't underline dates, it's distracting.
+  (custom-set-faces
+   '(org-date ((((class color)) (:underline nil))) t))))
 
 (use-package org-bullets
   :after org
