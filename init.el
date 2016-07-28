@@ -2317,6 +2317,9 @@ Taken from http://stackoverflow.com/a/3072831/355252."
   :diminish (eldoc-mode . " ⓓ"))
 
 (use-package emacs-lisp-mode
+  :bind (("M-." . find-function-at-point))
+  :interpreter (("emacs" . emacs-lisp-mode))
+  :mode ("Cask" . emacs-lisp-mode)
   :init
   (progn
     (add-hook 'emacs-lisp-mode-hook (lambda() (setq mode-name "el")))
@@ -2334,10 +2337,7 @@ Taken from http://stackoverflow.com/a/3072831/355252."
          ("C-A-p" . macrostep-prev-macro)
          )))
     (use-package ert
-      :config (add-to-list 'emacs-lisp-mode-hook 'ert--activate-font-lock-keywords)))
-  :bind (("M-." . find-function-at-point))
-  :interpreter (("emacs" . emacs-lisp-mode))
-  :mode ("Cask" . emacs-lisp-mode))
+      :config (add-to-list 'emacs-lisp-mode-hook 'ert--activate-font-lock-keywords))))
 
 (use-package etags                      ; Tag navigation
   :defer t
