@@ -79,7 +79,7 @@
       ((org-agenda-overriding-header "Unscheduled work-related tasks")
        (org-agenda-files
         (quote
-         ("~/doc/tasks/BAE.txt")))
+         ("~/doc/tasks/todo.txt")))
        (org-agenda-sorting-strategy
         (quote
          (todo-state-up priority-down category-up)))
@@ -115,7 +115,7 @@
  '(org-agenda-default-appointment-duration 60)
  '(org-agenda-files
    (quote
-    ("~/doc/tasks/BAE.txt" "~/doc/tasks/todo.txt" "~/doc/tasks/habits.txt" "~/doc/tasks/Bahai.txt" "~/doc/tasks/emacs.txt" "~/doc/tasks/OSS.txt")))
+    ("~/doc/tasks/todo.txt" "~/doc/tasks/habits.txt"  "~/doc/tasks/emacs.txt")))
  '(org-agenda-fontify-priorities t)
  '(org-agenda-include-diary t)
  '(org-agenda-inhibit-startup t)
@@ -163,6 +163,12 @@
       (file+headline "~/doc/tasks/todo.txt" "Inbox")
       "* TODO %?
 SCHEDULED: %t
+:PROPERTIES:
+:ID:       %(shell-command-to-string \"uuidgen\"):CREATED:  %U
+:END:" :prepend t)
+     ("e" "Emacs Task" entry
+      (file+headline "~/doc/tasks/emacs.txt" "Tasks")
+      "* TODO %A%?
 :PROPERTIES:
 :ID:       %(shell-command-to-string \"uuidgen\"):CREATED:  %U
 :END:" :prepend t)
@@ -284,11 +290,7 @@ SCHEDULED: %t
  '(org-refile-targets
 (quote
  (("~/doc/tasks/todo.txt" :level . 1)
-  ("~/doc/tasks/Bahai.txt" :level . 1)
   ("~/doc/tasks/emacs.txt" :level . 1)
-  ("~/doc/tasks/OSS.txt" :level . 1)
-  ("~/doc/tasks/BAE.txt" :level . 1)
-  ("~/doc/tasks/assembly.txt" :level . 1)
   (org-agenda-files :todo . "PROJECT"))))
  '(org-return-follows-link t)
  '(org-reverse-note-order t)
