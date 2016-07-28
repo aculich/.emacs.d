@@ -691,6 +691,10 @@ Summary: %s" product component version priority severity heading) ?\n ?\n)
     (?y . "SOMEDAY")
     ))
 
+(setq org-todo-keywords
+  '((sequence
+     "DONE" "DELEGATED" "NOTE" "DEFERRED" "STARTED" "TODO" "WAITING" "CANCELED" "SOMEDAY")))
+
 (defvar org-todo-state-map nil)
 (define-prefix-command 'org-todo-state-map)
 
