@@ -68,7 +68,7 @@
        :view 'two-weeks))))
 
 (use-package org-autolist
-  :load-path "site-lisp/org-autolist"
+  :after org
   :commands org-autolist-mode)
 
 (use-package calfw
@@ -854,6 +854,29 @@ Summary: %s" product component version priority severity heading) ?\n ?\n)
     (if billcode (org-entry-put (point) "BILLCODE" billcode))
     (if taskcode (org-entry-put (point) "TASKCODE" taskcode))
     (if project (org-entry-put (point) "PROJECT" project))))
+
+
+(use-package org-bullets
+  :after org
+  :commands org-bullets-mode
+  :init (add-hook 'org-mode (lambda () (org-bullets-mode 1))))
+
+(use-package org-cliplink
+  :after org
+  :bind ("C-M-y" . org-cliplink))
+
+(use-package org-trello
+  :after org
+  :commands org-trello-mode
+  :init (add-hook 'org-mode (lambda () (org-trello-mode 1))))
+
+(use-package org-dashboard
+  :after org
+  :commands org-dashboard-display)
+
+(use-package org-expiry
+  :after org
+  :defer t)
 
 (provide 'dot-org)
 

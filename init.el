@@ -4130,39 +4130,35 @@ for more information about CALLBACK."
 
 
 
-(use-package org
-  :mode ("\\.org$" . org-mode)
-  :bind (("C-c l" . org-store-link)
-         ("C-c c" . org-capture)
-         ("C-c a" . org-agenda)
-         ("C-c b" . org-iswitchb)
+(use-package dot-org
+  :commands my-org-startup
+  :defer 30
+  :mode ("\\.org$"         . org-mode)
+  :bind (("C-c l"          . org-store-link)
+         ("C-c c"          . org-capture)
+         ("C-c a"          . org-agenda)
+         ("C-c b"          . org-iswitchb)
          :map org-mode-map
-         ("C-'" . winner-undo-redo)
-         ("A-'" . org-cycle-agenda-files)
-         ("C-<tab>" . other-window)
-         ("C-S-<tab>" . other-window-previous)
-)
-  :init
-  (use-package dot-org
-    :commands my-org-startup
-    :bind (("M-C"   . jump-to-org-agenda)
-           ("M-m"   . org-smart-capture)
-           ("M-M"   . org-inline-note)
-           ("C-. n" . org-velocity-read))
-    :defer 30
-    :config
-    (run-with-idle-timer 300 t 'jump-to-org-agenda)
-    (my-org-startup))
+         ("C-'"            . winner-undo-redo)
+         ("A-'"            . org-cycle-agenda-files)
+         ("C-<tab>"        . other-window)
+         ("C-S-<tab>"      . other-window-previous)
+         ("M-C"            . jump-to-org-agenda)
+         ("M-m"            . org-smart-capture)
+         ("M-M"            . org-inline-note)
+         ("C-. n"          . org-velocity-read))
   :config
+  (run-with-idle-timer 300 t 'jump-to-org-agenda)
+  (my-org-startup)
   ;; http://notesyoujustmightwanttosave.blogspot.com/2011/12/org-speed-keys.html
   (setq org-speed-commands-user
-        '(("q" . org-cut-subtree)
-          ("j" . (org-speed-move-safe 'org-next-visible-heading))
-          ("k" . (org-speed-move-safe 'org-previous-visible-heading))
-          ("h" . (org-speed-move-safe 'org-forward-heading-same-level))
-          ("y" . (org-speed-move-safe 'org-backward-heading-same-level))
-          ("g" . org-goto)
-          ("G" . (org-refile t))))
+        '(("q"             . org-cut-subtree)
+          ("j"             . (org-speed-move-safe 'org-next-visible-heading))
+          ("k"             . (org-speed-move-safe 'org-previous-visible-heading))
+          ("h"             . (org-speed-move-safe 'org-forward-heading-same-level))
+          ("y"             . (org-speed-move-safe 'org-backward-heading-same-level))
+          ("g"             . org-goto)
+          ("G"             . (org-refile t))))
   ;;(setq org-default-notes-file (concat org-directory "/notes.org"))
   (setq org-tags-column -90)
   (setq org-capture-bookmark t)
@@ -4197,31 +4193,10 @@ for more information about CALLBACK."
   (custom-set-faces
    '(org-date ((((class color)) (:underline nil))) t)))
 
-(use-package org-bullets
-  :after org
-  :commands org-bullets-mode
-  :init (add-hook 'org-mode (lambda () (org-bullets-mode 1))))
-
-(use-package org-cliplink
-  :after org
-  :bind ("C-M-y" . org-cliplink))
-
-(use-package org-trello
-  :after org
-  :commands org-trello-mode
-  :init (add-hook 'org-mode (lambda () (org-trello-mode 1))))
-
-(use-package org-dashboard
-  :after org
-  :commands org-dashboard-display)
-
-(use-package org-expiry
-  :after org
-  :defer t)
-
-(use-package org-autolist
-  :after org
-  :commands org-autolist-mode)
+(use-package org
+  :defer 30
+  :config
+  (my-org-startup))
 
 
 
