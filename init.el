@@ -4143,6 +4143,7 @@ for more information about CALLBACK."
          ("A-'"            . org-cycle-agenda-files)
          ("C-<tab>"        . other-window)
          ("C-S-<tab>"      . other-window-previous)
+         ("C-A-<tab>"      . org-force-cycle-archived)
          ("M-C"            . jump-to-org-agenda)
          ("M-m"            . org-smart-capture)
          ("M-M"            . org-inline-note)
