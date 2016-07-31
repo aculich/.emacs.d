@@ -1180,7 +1180,8 @@ Return the new window for BUFFER."
   :bind (("C-c j w" . avy-goto-word-1)
          ("C-c j l" . avy-goto-line)
          ("C-c j b" . avy-pop-mark)
-         ("C-c j j" . avy-goto-char-2)))
+         ("C-c j j" . avy-goto-char-2)
+         ("C-c j k" . avy-goto-char-in-line)))
 
 (use-package helm-imenu                 ; Jump to tags with Helm
   :ensure helm
