@@ -168,7 +168,7 @@ SCHEDULED: %t
 :END:" :prepend t)
      ("e" "Emacs Task" entry
       (file+headline "~/doc/tasks/emacs.txt" "Tasks")
-      "* TODO %A%?
+      "* TODO %a%?
 :PROPERTIES:
 :ID:       %(shell-command-to-string \"uuidgen\"):CREATED:  %U
 :END:" :prepend t)
