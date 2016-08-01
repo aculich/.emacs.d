@@ -695,6 +695,11 @@ Summary: %s" product component version priority severity heading) ?\n ?\n)
   '((sequence
      "DONE" "DELEGATED" "NOTE" "DEFERRED" "STARTED" "TODO" "WAITING" "CANCELED" "SOMEDAY")))
 
+;; FIXME: org-done-keywords seems to get overwritten which breaks org-archive-expired-tasks
+(setq org-done-keywords
+  '((sequence
+     "DONE" "CANCELED")))
+
 (defvar org-todo-state-map nil)
 (define-prefix-command 'org-todo-state-map)
 
