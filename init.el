@@ -4198,7 +4198,7 @@ for more information about CALLBACK."
 
 (use-package org
   :defer 30
-  :init
+  :init                                 ; FIXME: better initialization for org-capture-emacs-todo
   (use-package emacs-lisp-mode
     :bind (:map emacs-lisp-mode-map
                 ("A-t" . org-capture-emacs-todo))
