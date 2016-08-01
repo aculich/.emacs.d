@@ -4187,9 +4187,10 @@ for more information about CALLBACK."
                 (save-excursion
                   (org-back-to-heading)
                   (org-expiry-insert-created)))))
-  ;; Show drawers, e.g. :PROPERTIES:, when we expand a heading.
-  ;; See http://emacs.stackexchange.com/a/22540/304
-  (remove-hook 'org-cycle-hook #'org-cycle-hide-drawers)
+  ;;;; Show drawers, e.g. :PROPERTIES:, when we expand a heading.
+  ;;;; See http://emacs.stackexchange.com/a/22540/304
+  ;; aculich NOTE: removing this hook is undesired behavior
+  ;; (remove-hook 'org-cycle-hook #'org-cycle-hide-drawers)
 
   ;; Don't underline dates, it's distracting.
   (custom-set-faces
