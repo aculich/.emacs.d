@@ -219,6 +219,7 @@
 ;; Symbol fonts.
 ;;
 ;; TODO:  Find Emoji and symbol fonts for Linux and Windows
+;; TODO: need a better fallback option if these custom fonts are not available
 
 (set-face-attribute 'default nil
                     :family "Source Code Pro" :height 110)
