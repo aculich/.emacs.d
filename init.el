@@ -62,6 +62,7 @@
 ;; Please don't load outdated byte code
 (setq load-prefer-newer t)
 
+;;;; test -e ~/.cask || ln -s $(dirname $(brew list cask | grep cask.el | head -1)) ~/.cask
 (require 'cask "~/.cask/cask.el")
 (ignore-errors (cask-initialize))
 
