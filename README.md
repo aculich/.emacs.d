@@ -17,6 +17,8 @@ You need Emacs 25 snapshot builds, straight from Git `master`.  Stable releases 
 $ git clone https://github.com/aculich/.emacs.d.git ~/.emacs.d
 $ brew install trash coreutils tern
 $ brew install aspell --with-lang-en
+$ brew tap caskroom/fonts
+$ brew cask install font-xits font-source-code-pro font-source-serif-pro font-consolas-for-powerline font-inconsolata font-monoid
 $ cd ~/.emacs.d && cask install
 ```
 
