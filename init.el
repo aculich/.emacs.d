@@ -296,11 +296,49 @@ symbols, emojis, greek letters, as well as fall backs for."
                             "logo")
               (insert "\n"))))
 
-(use-package color-theme-sanityinc-tomorrow
+(use-package flatland-black-theme
   :ensure t
   :init
   (progn
-    (load-theme 'sanityinc-tomorrow-night :no-confirm)
+    (load-theme 'flatland-black :no-confirm)
+    (setf frame-background-mode 'dark)
+    (global-hl-line-mode 1)))
+
+(use-package dakrone-theme
+  :disabled t
+  :ensure t
+  :init
+  (progn
+    (load-theme 'atom-dark :no-confirm)
+    (setf frame-background-mode 'dark)
+    (global-hl-line-mode 1)))
+
+(use-package atom-dark-theme
+  :disabled t
+  :ensure t
+  :init
+  (progn
+    (load-theme 'atom-dark :no-confirm)
+    (setf frame-background-mode 'dark)
+    (global-hl-line-mode 1)))
+
+(use-package cyberpunk-theme
+  :disabled t
+  :ensure t
+  :init
+  (progn
+    (load-theme 'cyberpunk :no-confirm)
+    (setf frame-background-mode 'dark)
+    (global-hl-line-mode 1)))
+
+(use-package color-theme-sanityinc-tomorrow
+  :disabled t
+  :ensure t
+  :init
+  (progn
+    (load-theme 'sanityinc-tomorrow-black :no-confirm)
+    ;; (load-theme 'sanityinc-tomorrow-blue :no-confirm)
+    ;; (load-theme 'sanityinc-tomorrow-night :no-confirm)
     (setf frame-background-mode 'dark)
     (global-hl-line-mode 1)
     (custom-set-faces
