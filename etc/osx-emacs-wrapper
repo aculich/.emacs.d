@@ -1,0 +1,4 @@
+#!/bin/sh
+exec /Applications/Emacs.app/Contents/MacOS/Emacs "$@"
+
+# put this wrapper in /usr/local/bin when using the emacs-nightly cask
