@@ -138,6 +138,11 @@
                    "RUST_SRC_PATH"      ; Rust sources, for racer
                    "CARGO_HOME"         ; Cargo home, for racer
                    "EMAIL"              ; My personal email
+                   "GPG_TTY"
+                   "GPG_AGENT_INFO"
+                   "SSH_AUTH_SOCK"
+                   "SSH_AGENT_PID"
+
                    ))
       (add-to-list 'exec-path-from-shell-variables var))
 
