@@ -4400,6 +4400,15 @@ for more information about CALLBACK."
 (use-package epa-file
     :defer t)
 
+(use-package csv-mode
+    :defer t)
+
+(use-package csv-nav
+    :defer t)
+
+(use-package parse-csv
+    :defer t)
+
 ;;; http://metasandwich.com/2013/01/19/emacs-config-youre-doing-it-wrong/
 ;;; http://www.fieggen.com/shoelace/ianknot.htm
 ;; (defun imenu-elisp-sections ()

@@ -338,6 +338,9 @@
 (depends-on "vagrant-tramp")
 (depends-on "wand")
 (depends-on "noflet")
+(depends-on "csv-mode")
+(depends-on "csv-nav")
+(depends-on "parse-csv")
 
 (depends-on "ac-slime")
 (depends-on "ace-isearch")
