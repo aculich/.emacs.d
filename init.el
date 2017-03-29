@@ -3074,6 +3074,7 @@ the REPL in a new frame instead."
   :bind ("C-c g I" . helm-gitignore))
 
 (use-package git-gutter
+  :ensure t
   :diminish git-gutter-mode
   :commands (stage-or-commit)
   :bind (("C-x C-g" . git-gutter:toggle)
@@ -3117,7 +3118,8 @@ the REPL in a new frame instead."
       (when (functionp 'magit-update-status-on-save)
         (magit-update-status-on-save)))
 
-    (require 'noflet)
+    (use-package noflet
+      :ensure t)
     ;; override y/n question-asking
     (defadvice git-gutter:stage-hunk (around quick-stage activate)
       (noflet ((yes-or-no-p (&rest args) t))
@@ -3617,6 +3619,7 @@ for more information about CALLBACK."
   :ensure t)
 
 (use-package flx-ido
+  :ensure t
   :after (ido flx)
   :init
   (progn
@@ -3928,6 +3931,7 @@ for more information about CALLBACK."
 (use-package eldoc-eval
 ;;  :diminish eldoc-minor-mode
 ;;  :diminish eldoc-mode
+  :ensure t
   :bind (("M-:" . eldoc-eval-expression))
   :config
   (progn
@@ -3958,15 +3962,20 @@ for more information about CALLBACK."
                ("C-c C-h C-l"    . hs-hide-level   )
                ("C-c C-h C-c"    . hs-toggle-hiding))))
 
-(use-package ido-at-point)
+(use-package ido-at-point
+  :ensure t)
 
-(use-package ido-load-library)
+(use-package ido-load-library
+  :ensure t)
 
-(use-package ido-select-window)
+(use-package ido-select-window
+  :ensure t)
 
-(use-package ido-sort-mtime)
+(use-package ido-sort-mtime
+  :ensure t)
 
 (use-package ido-ubiquitous
+  :ensure t
   :init
   (progn
     (use-package ido
@@ -3974,9 +3983,11 @@ for more information about CALLBACK."
       (progn
         (ido-ubiquitous-mode +1)))))
 
-(use-package ido-vertical-mode)
+(use-package ido-vertical-mode
+  :ensure t)
 
 (use-package idomenu
+  :ensure t
   :bind ("M-i" . idomenu))
 
 (use-package loccur)
@@ -3999,6 +4010,7 @@ for more information about CALLBACK."
 (use-package paren-face)
 
 (use-package popwin
+  :ensure t
   :commands popwin-mode
   :demand t
   :init (popwin-mode 1)
@@ -4261,6 +4273,7 @@ for more information about CALLBACK."
 
 
 (use-package drag-stuff
+  :ensure t
   :diminish drag-stuff-mode
   :init (drag-stuff-global-mode 1)
   :bind (("M-N" . drag-stuff-down)
@@ -4309,6 +4322,7 @@ for more information about CALLBACK."
   :init
   (progn
     (use-package rvm
+      :ensure t
       :defer t
       :init (rvm-use-default)
       :config (setq rvm-verbose nil))
@@ -4319,6 +4333,7 @@ for more information about CALLBACK."
       :mode (("\\.rhtml$" . rhtml-mode)
              ("\\.html\\.erb$" . rhtml-mode)))
     (use-package rinari
+      :ensure t
       :defer t
       :init (global-rinari-mode 1)
       :config
@@ -4373,6 +4388,7 @@ for more information about CALLBACK."
   :bind ("C-x p" . prodigy))
 
 (use-package discover
+  :ensure t
   :init (global-discover-mode 1))
 
 (use-package ert-async
@@ -4382,6 +4398,7 @@ for more information about CALLBACK."
             (add-hook 'emacs-lisp-mode-hook 'ert-async-activate-font-lock-keywords)))
 
 (use-package cl-lib-highlight
+  :ensure t
   :init (cl-lib-highlight-initialize))
 
 (use-package httprepl
@@ -4393,6 +4410,7 @@ for more information about CALLBACK."
   :defer t)
 
 (use-package path-headerline-mode
+  :ensure t
   :init
   (progn
     (path-headerline-mode +1)))
@@ -4437,6 +4455,7 @@ for more information about CALLBACK."
 (use-package pos-tip)
 
 (use-package register-channel
+  :ensure t
   :defer t
   :init
   (progn
