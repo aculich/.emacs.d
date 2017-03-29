@@ -63,19 +63,19 @@
 (setq load-prefer-newer t)
 
 ;;;; test -e ~/.cask || ln -s $(dirname $(brew list cask | grep cask.el | head -1)) ~/.cask
-(require 'cask "~/.cask/cask.el")
-(ignore-errors (cask-initialize))
+; (require 'cask "~/.cask/cask.el")
+; (ignore-errors (cask-initialize))
 
-;; (require 'package)
-;; (setq package-enable-at-startup nil)
-;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
-;; (package-initialize)
+(package-initialize)
 
-;; ;; Bootstrap `use-package'
-;; (unless (package-installed-p 'use-package)
-;;   (package-refresh-contents)
-;;   (package-install 'use-package))
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 
 ;;; Requires
